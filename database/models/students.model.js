@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const studentSchema = mongoose.Schema(
   {
     userType: {
@@ -55,20 +56,17 @@ const studentSchema = mongoose.Schema(
     image: { type: String, trim: true },
     cart: [
       {
-        id: { type: mongoose.Schema.Types.ObjectId },
-        ref: "courses",
+        id: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
       },
     ],
     wishList: [
       {
-        id: { type: mongoose.Schema.Types.ObjectId },
-        ref: "courses",
+        id: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
       },
     ],
     myLearning: [
       {
-        id: { type: mongoose.Schema.Types.ObjectId },
-        ref: "courses",
+        id: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
       },
     ],
   },
@@ -76,6 +74,29 @@ const studentSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+studentSchema.methods.toJSON = function () {
+  const data = this.toObject();
+  // delete data.password;
+  // delete data.__v;
+  return data;
+};
+
+studentSchema.pre("save", async function () {
+  if (this.isModified("password"))
+    this.password = await bcrypt.hash(this.password, 10);
+});
+
+studentSchema.pre("findOneAndUpdate", async function (next) {
+  try {
+    if (this._update.password) {
+      this._update.password = await bcrypt.hash(this._update.password, 10);
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 const studentModel = new mongoose.model("Students", studentSchema);
 module.exports = studentModel;
