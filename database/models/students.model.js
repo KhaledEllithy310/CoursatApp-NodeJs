@@ -69,6 +69,14 @@ const studentSchema = mongoose.Schema(
         id: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
       },
     ],
+    tokens: [
+      {
+        token: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
@@ -97,6 +105,22 @@ studentSchema.pre("findOneAndUpdate", async function (next) {
     next(error);
   }
 });
+
+studentSchema.statics.logMe = async (email, password) => {
+  const studentData = await studentModel.findOne({ email });
+  if (!studentData) throw new Error("invalid email");
+  const isPasswordMatched = bcrypt.compare(password, studentData.password);
+  if (!isPasswordMatched) throw new Error("invalid password");
+  return studentData;
+};
+
+studentSchema.methods.generateToken = async function () {
+  const token = jwt.sign({ _id: this._id }, process.env.JWT_KEY);
+  console.log("token", token);
+  this.tokens.push({ token });
+  await this.save();
+  return token;
+};
 
 const studentModel = new mongoose.model("Students", studentSchema);
 module.exports = studentModel;

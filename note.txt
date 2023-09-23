@@ -1,0 +1,58 @@
+student =>  {
+
+=> register             
+=> login               
+=> logout 
+=> logout All
+
+=> show profile
+=> edit profile
+=> change image profile
+
+=> add to cart
+=> add to wishList
+=> add to myLearning
+
+=> show cart
+=> show wishList
+=> show myLearning
+
+
+show all student 
+
+}
+
+/*----------------------------------------------------------------
+
+instructor =>  {
+
+=> register
+=> login
+=> logout
+
+=> show profile
+=> edit profile
+=> change image profile
+
+=> add course
+=> add content[videos]
+=> add content[assessment]
+
+=> show my courses
+=> show all student by courseId
+
+}
+
+admin => {
+
+
+   show all students
+   show all instructors
+   add student
+   edit student
+   add instructor
+   edit instructor
+
+
+
+}
