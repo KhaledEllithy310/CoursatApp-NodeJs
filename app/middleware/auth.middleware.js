@@ -1,4 +1,4 @@
-const studentModel = require("../../database/models/students.model");
+const studentModel = require("../../database/models/users.model");
 const jwt = require("jsonwebtoken");
 const { resGenerator } = require("../helper");
 

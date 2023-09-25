@@ -1,6 +1,6 @@
-student =>  {
-
-=> register             
+USER =>  {
+#DONE
+[
 => login               
 => logout 
 => logout All
@@ -8,6 +8,16 @@ student =>  {
 => show profile
 => edit profile
 => change image profile
+]
+}
+
+
+
+student =>  {
+#DONE
+[
+=> register             
+]
 
 => add to cart
 => add to wishList
@@ -18,41 +28,33 @@ student =>  {
 => show myLearning
 
 
-show all student 
 
 }
 
 /*----------------------------------------------------------------
 
 instructor =>  {
-
+#DONE
+{
 => register
-=> login
-=> logout
-
-=> show profile
-=> edit profile
-=> change image profile
-
 => add course
-=> add content[videos]
-=> add content[assessment]
+=> add content[videos , assessment]
+=> edit content[videos , assessment]
 
 => show my courses
+}
+
+
 => show all student by courseId
 
 }
 
 admin => {
-
-
    show all students
    show all instructors
    add student
    edit student
    add instructor
    edit instructor
-
-
 
 }

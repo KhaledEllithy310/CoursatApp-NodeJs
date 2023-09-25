@@ -13,15 +13,12 @@ const courseSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
-    content: {
-      type: [
-        {
-          video: { type: String, required: true, trim: true },
-          assignment: { type: String, trim: true },
-        },
-      ],
-      required: true, // Make the content field required
-    },
+    content: [
+      {
+        videoFile: { type: String, required: true, trim: true },
+        assignment: { type: String, trim: true },
+      },
+    ],
     image: { type: String, trim: true },
     isPublished: { type: Boolean, default: false },
     categoryId: {
