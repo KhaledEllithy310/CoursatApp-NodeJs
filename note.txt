@@ -16,16 +16,14 @@ USER =>  {
 student =>  {
 #DONE
 [
-=> register             
-]
-
+=> register  
 => add to cart
 => add to wishList
-=> add to myLearning
-
+=> add to myLearning      
 => show cart
 => show wishList
-=> show myLearning
+=> show myLearning     
+]
 
 
 

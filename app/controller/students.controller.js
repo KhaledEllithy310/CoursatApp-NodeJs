@@ -172,5 +172,53 @@ class Student {
       );
     }
   };
+
+  static showAllCoursesInCart = async (req, res) => {
+    try {
+      const cartCourses = await userModel
+        .findOne(req.user._id)
+        .populate("cart.courseId");
+
+      resGenerator(res, 200, true, cartCourses, "show cart successfully");
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "show cart failed");
+    }
+  };
+
+  static showAllCoursesInWishList = async (req, res) => {
+    try {
+      const wishListCourses = await userModel
+        .findOne(req.user._id)
+        .populate("wishList.courseId");
+
+      resGenerator(
+        res,
+        200,
+        true,
+        wishListCourses,
+        "show wishList successfully"
+      );
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "show wishList failed");
+    }
+  };
+
+  static showAllCoursesInMyLearning = async (req, res) => {
+    try {
+      const myLearningCourses = await userModel
+        .findOne(req.user._id)
+        .populate("myLearning.courseId");
+
+      resGenerator(
+        res,
+        200,
+        true,
+        myLearningCourses,
+        "show myLearning successfully"
+      );
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "show myLearning failed");
+    }
+  };
 }
 module.exports = Student;

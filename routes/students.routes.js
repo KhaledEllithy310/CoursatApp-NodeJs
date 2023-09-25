@@ -36,4 +36,20 @@ router.post(
   studentsController.addToMyLearning
 );
 
+// show All Courses In Cart
+router.get("/showCart/", authUser, studentsController.showAllCoursesInCart);
+
+// show All Courses In wishList
+router.get(
+  "/showWishList/",
+  authUser,
+  studentsController.showAllCoursesInWishList
+);
+
+// show All Courses In myLearning
+router.get(
+  "/showMyLearning/",
+  authUser,
+  studentsController.showAllCoursesInMyLearning
+);
 module.exports = router;

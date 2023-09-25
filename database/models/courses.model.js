@@ -13,6 +13,10 @@ const courseSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    price: {
+      type: Number,
+      required: true,
+    },
     content: [
       {
         videoFile: { type: String, required: true, trim: true },
