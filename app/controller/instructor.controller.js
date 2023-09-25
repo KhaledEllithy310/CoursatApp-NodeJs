@@ -37,14 +37,17 @@ class Instructor {
 
   static addCourse = async (req, res) => {
     try {
-      const courseData = new courseModel(req.body);
+      const courseData = new courseModel({
+        ...req.body,
+        instructorId: req.user._id,
+      });
       await courseData.save();
       resGenerator(res, 200, true, courseData, "add Category successfully");
     } catch (e) {
       resGenerator(res, 500, false, e.message, "add Category failed");
     }
   };
-
+  static deleteCourse = async (req, res) => {}
   static addContent = async (req, res) => {
     try {
       const { courseId } = req.params;
@@ -165,6 +168,7 @@ class Instructor {
       resGenerator(res, 500, false, e.message, "Videos upload failed");
     }
   };
+
 
   static showCoursesByInstructor = async (req, res) => {
     try {

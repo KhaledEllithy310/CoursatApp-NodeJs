@@ -56,17 +56,17 @@ const userSchema = mongoose.Schema(
     image: { type: String, trim: true },
     cart: [
       {
-        id: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
+        courseId: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
       },
     ],
     wishList: [
       {
-        id: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
+        courseId: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
       },
     ],
     myLearning: [
       {
-        id: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
+        courseId: { type: mongoose.Schema.Types.ObjectId, ref: "courses" },
       },
     ],
     tokens: [

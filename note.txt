@@ -44,7 +44,7 @@ instructor =>  {
 => show my courses
 }
 
-
+=> deleteCourse
 => show all student by courseId
 
 }

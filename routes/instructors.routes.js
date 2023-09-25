@@ -7,7 +7,7 @@ const uploadFiles = require("../app/middleware/uploadFiles.middleware");
 // register As Instructor
 router.post("/add", instructorsController.registerInstructor);
 router.post("/addCategory", instructorsController.addCategory);
-router.post("/addCourse", instructorsController.addCourse);
+router.post("/addCourse", authUser, instructorsController.addCourse);
 // router.post(
 //   "/addContent/:courseId",
 //   uploadFiles.array("videos", 2),
@@ -28,5 +28,4 @@ router.get(
   authUser,
   instructorsController.showCoursesByInstructor
 );
-
 module.exports = router;
