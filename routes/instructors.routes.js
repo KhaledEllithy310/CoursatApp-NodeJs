@@ -6,26 +6,51 @@ const uploadFiles = require("../app/middleware/uploadFiles.middleware");
 
 // register As Instructor
 router.post("/add", instructorsController.registerInstructor);
-router.post("/addCategory", instructorsController.addCategory);
+
+//Add Course with instructor or Admin
 router.post("/addCourse", authUser, instructorsController.addCourse);
-// router.post(
-//   "/addContent/:courseId",
-//   uploadFiles.array("videos", 2),
-//   instructorsController.addContent
-// );
+
+//Edit Course with instructor or Admin
+router.patch(
+  "/editCourse/:courseId",
+  authUser,
+  instructorsController.editCourse
+);
+
+//Delete Course from courses with instructor or Admin
+router.delete(
+  "/deleteCourse/:courseId",
+  authUser,
+  instructorsController.deleteCourse
+);
+
+//add content with instructor or Admin
 router.post(
   "/addContent/:courseId",
   uploadFiles.fields([{ name: "video" }, { name: "assignment" }]),
+  authUser,
   instructorsController.addContent
 );
-router.post(
+
+//edit content with instructor or Admin
+router.patch(
   "/editContent/:contentId",
   uploadFiles.fields([{ name: "video" }, { name: "assignment" }]),
+  authUser,
   instructorsController.editContent
 );
+
+//show all course by instructorId
 router.get(
   "/showCourses",
   authUser,
   instructorsController.showCoursesByInstructor
+);
+
+//show all students paid the course
+router.get(
+  "/showStudents/:courseId",
+  authUser,
+  instructorsController.showAllStudentsByCourseId
 );
 module.exports = router;

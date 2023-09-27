@@ -36,23 +36,42 @@ instructor =>  {
 {
 => register
 => add course
-=> add content[videos , assessment]
-=> edit content[videos , assessment]
+
 
 => show my courses
-}
-
 => deleteCourse
 => show all student by courseId
+}
 
+
+
+تعديل فى الفانكشن
+
+=> add content[videos , assessment]
+=> edit content[videos , assessment]
 }
 
 admin => {
-   show all students
-   show all instructors
-   add student
-   edit student
-   add instructor
-   edit instructor
+
+#DONE
+{
+add Category
+edit Category
+
+add course
+edit course
+delete course
+add content
+edit content
+delete course ********************************
+show Courses By InstructorId
+show All Students By CourseId
+edit user
+add user
+show all students
+Show All Instructors
+Show All Admins
+}
+
 
 }

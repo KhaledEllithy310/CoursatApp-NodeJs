@@ -1,0 +1,801 @@
+{
+	"info": {
+		"_postman_id": "4d43394f-e090-45d3-9c76-3b4c7c8dedc5",
+		"name": "corsateApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27266667",
+		"_collection_link": "https://lunar-shadow-785474.postman.co/workspace/Team-Workspace~e6927c73-a039-48ee-86bd-eaf7c9f6995e/collection/27266667-4d43394f-e090-45d3-9c76-3b4c7c8dedc5?action=share&source=collection_link&creator=27266667"
+	},
+	"item": [
+		{
+			"name": "students",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"firstName\":\"khaleduser\",\r\n//     \"lastName\":\"ellithyuser\",\r\n//     \"email\":\"khaledUser@test.com\",\r\n//      \"password\":\"3Brothers@@\",\r\n//     \"gender\":\"male\",\r\n//     \"birthOfDate\":\"1996-09-01\"\r\n// }\r\n\r\n{\r\n    \"firstName\":\"khaledStudent1\",\r\n    \"lastName\":\"ellithyStudent1\",\r\n    \"email\":\"khaledStudent1@test.com\",\r\n     \"password\":\"3Brothers@@\",\r\n    \"gender\":\"male\",\r\n    \"birthOfDate\":\"1996-09-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}students/add",
+									"host": [
+										"{{local_url}}students"
+									],
+									"path": [
+										"add"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "cart",
+					"item": [
+						{
+							"name": "add to cart",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU2NjQ1MzF9.OvYD7aUZGVCAAMBQxSLwrXV06xQ4bT-tRXYnKXBULpE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}students/addToCart/6511bf77126fa211eeef5eb1",
+									"host": [
+										"{{local_url}}students"
+									],
+									"path": [
+										"addToCart",
+										"6511bf77126fa211eeef5eb1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete From Cart",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU2NjQ1MzF9.OvYD7aUZGVCAAMBQxSLwrXV06xQ4bT-tRXYnKXBULpE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}students/deleteFromWishList/6511bfa3126fa211eeef5eb5",
+									"host": [
+										"{{local_url}}students"
+									],
+									"path": [
+										"deleteFromWishList",
+										"6511bfa3126fa211eeef5eb5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show cart",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU2NjQ1MzF9.OvYD7aUZGVCAAMBQxSLwrXV06xQ4bT-tRXYnKXBULpE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}students/showCart",
+									"host": [
+										"{{local_url}}students"
+									],
+									"path": [
+										"showCart"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "wish list",
+					"item": [
+						{
+							"name": "add to wishList",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU2NjQ1MzF9.OvYD7aUZGVCAAMBQxSLwrXV06xQ4bT-tRXYnKXBULpE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}students/addToWishList/6511bfa3126fa211eeef5eb5",
+									"host": [
+										"{{local_url}}students"
+									],
+									"path": [
+										"addToWishList",
+										"6511bfa3126fa211eeef5eb5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete From wishList",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU2NjQ1MzF9.OvYD7aUZGVCAAMBQxSLwrXV06xQ4bT-tRXYnKXBULpE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}students/deleteFromCart/6511bf77126fa211eeef5eb1",
+									"host": [
+										"{{local_url}}students"
+									],
+									"path": [
+										"deleteFromCart",
+										"6511bf77126fa211eeef5eb1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show wish list",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU2NjQ1MzF9.OvYD7aUZGVCAAMBQxSLwrXV06xQ4bT-tRXYnKXBULpE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}students/showWishList",
+									"host": [
+										"{{local_url}}students"
+									],
+									"path": [
+										"showWishList"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "my learning",
+					"item": [
+						{
+							"name": "add to MyLearning",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU2NjQ1MzF9.OvYD7aUZGVCAAMBQxSLwrXV06xQ4bT-tRXYnKXBULpE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"promoCode\":\"kh2023\"   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}students/addToMyLearning/650f36ade3ebcd7278a0db21",
+									"host": [
+										"{{local_url}}students"
+									],
+									"path": [
+										"addToMyLearning",
+										"650f36ade3ebcd7278a0db21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show myLearning",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU2NjQ1MzF9.OvYD7aUZGVCAAMBQxSLwrXV06xQ4bT-tRXYnKXBULpE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}students/showMyLearning",
+									"host": [
+										"{{local_url}}students"
+									],
+									"path": [
+										"showMyLearning"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "instructors",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"firstName\":\"khaledInstructor3\",\r\n//     \"lastName\":\"ellithyInstructor3\",\r\n//     \"email\":\"khaledInstructor3@test.com\",\r\n//      \"password\":\"3Brothers@@\",\r\n//     \"gender\":\"male\",\r\n//     \"birthOfDate\":\"1996-09-01\"\r\n// }\r\n\r\n{\r\n    \"firstName\":\"khaledAdmin\",\r\n    \"lastName\":\"ellithyAdmin\",\r\n    \"email\":\"khaledAdmin@test.com\",\r\n     \"password\":\"3Brothers@@\",\r\n    \"gender\":\"male\",\r\n    \"birthOfDate\":\"1996-09-01\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}instructors/add",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"add"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "course",
+					"item": [
+						{
+							"name": "add course",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYmM0NTIxZGNlYTZkYTZjMWYwNmYiLCJpYXQiOjE2OTU2NjEyNjR9.BV-49aJSU9q-aMBfKfTCm5QCNh1prttodv2EkB7yhkQ",
+										"description": "instructor",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE0NWU2NDE4OGFiYzBlODMzOTg5MWMiLCJpYXQiOjE2OTU4MzM3NzV9.VdC9NeAcxWlYLAzS884L-7iL7VsCUOhGxKcGu4UeEL0",
+										"description": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//   \"name\": \"frontend 1\",\r\n//   \"description\": \"frontend 1\",\r\n//   \"price\":\"200\",\r\n//   \"categoryId\": \"650f308ed4084169723b64ea\"\r\n// }\r\n\r\n{\r\n  \"name\": \"frontend 1\",\r\n  \"description\": \"frontend 1\",\r\n  \"categoryId\": \"650f308ed4084169723b64ea\",\r\n  \"price\":\"200\",\r\n  \"instructorId\":\"6511bc4521dcea6da6c1f06f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}instructors/addCourse",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"addCourse"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit course",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBmMzhmMTc0M2U2YWU2N2Q4NGZkNjUiLCJpYXQiOjE2OTU0OTY0NjF9.QpEUbg_0F7pdAGA_bxjXq7LTECscMjso59Qlv0GsVbo",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE0NWU2NDE4OGFiYzBlODMzOTg5MWMiLCJpYXQiOjE2OTU4MzM3NzV9.VdC9NeAcxWlYLAzS884L-7iL7VsCUOhGxKcGu4UeEL0",
+										"description": "admin",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"frontend 1\",\r\n  \"description\": \"frontend 1\",\r\n  \"categoryId\": \"650f308ed4084169723b64ea\",\r\n  \"instructorId\":\"6511bc4521dcea6da6c1f06f\",\r\n  \"price\":\"400\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}instructors/editCourse/650f36ade3ebcd7278a0db21",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"editCourse",
+										"650f36ade3ebcd7278a0db21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add content",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBmMzhmMTc0M2U2YWU2N2Q4NGZkNjUiLCJpYXQiOjE2OTU0OTY0NjF9.QpEUbg_0F7pdAGA_bxjXq7LTECscMjso59Qlv0GsVbo",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "video",
+											"type": "file",
+											"src": "/C:/Users/user/Downloads/3784896-removebg-preview.png"
+										},
+										{
+											"key": "assignment",
+											"type": "file",
+											"src": "/C:/Users/user/Downloads/login_image-removebg-preview.png"
+										},
+										{
+											"key": "videoName",
+											"value": "AkramVideo2",
+											"type": "text"
+										},
+										{
+											"key": "assignmentName",
+											"value": "Assigment2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local_url}}instructors/addContent/650f36ade3ebcd7278a0db21",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"addContent",
+										"650f36ade3ebcd7278a0db21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "edit content",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYmM0NTIxZGNlYTZkYTZjMWYwNmYiLCJpYXQiOjE2OTU2NjEyNjR9.BV-49aJSU9q-aMBfKfTCm5QCNh1prttodv2EkB7yhkQ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "video",
+											"type": "file",
+											"src": "/C:/Users/user/Downloads/6771586_book_courses_education_learning_school_icon.png"
+										},
+										{
+											"key": "assignment",
+											"type": "file",
+											"src": "/C:/Users/user/Downloads/dizzy-designer.png"
+										},
+										{
+											"key": "videoName",
+											"value": "videoName",
+											"type": "text"
+										},
+										{
+											"key": "assignmentName",
+											"value": "assignmentName",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{local_url}}instructors/editContent/650f36ade3ebcd7278a0db21",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"editContent",
+										"650f36ade3ebcd7278a0db21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "showCoursesByInstructor",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBmMzhmMTc0M2U2YWU2N2Q4NGZkNjUiLCJpYXQiOjE2OTU1MDE3MjF9.H-MSbhyTba_5Ect_sB5nTKlsJEFrdlQhQ17zXGGDRd8",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE0NWU2NDE4OGFiYzBlODMzOTg5MWMiLCJpYXQiOjE2OTU4MzM3NzV9.VdC9NeAcxWlYLAzS884L-7iL7VsCUOhGxKcGu4UeEL0",
+										"description": "admin",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"instructorId\":\"6511bc4521dcea6da6c1f06f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}instructors/showCourses",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"showCourses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show student by course id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYmM0NTIxZGNlYTZkYTZjMWYwNmYiLCJpYXQiOjE2OTU2NjEyNjR9.BV-49aJSU9q-aMBfKfTCm5QCNh1prttodv2EkB7yhkQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}instructors/showStudents/650f36ade3ebcd7278a0db21",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"showStudents",
+										"650f36ade3ebcd7278a0db21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete course",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{local_url}}instructors/deleteCourse",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"deleteCourse"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "log in",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"email\":\"khaledInstructor3@test.com\",\r\n//      \"password\":\"3Brothers@@\"\r\n// }\r\n\r\n// {\r\n//     \"email\":\"khaledStudent1@test.com\",\r\n//      \"password\":\"3Brothers@@\"\r\n// }\r\n{\r\n    \"email\":\"khaledAdmin@test.com\",\r\n     \"password\":\"3Brothers@@\" \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}users/login",
+									"host": [
+										"{{local_url}}users"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logOut",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBlZDljMjM3MmFiYWIyOTU4NGUyMmQiLCJpYXQiOjE2OTU0NzIyMDN9.PcY4wIsfmApcU3wY1zhBVoNUmoY_X08w4jj_QlPNQlA",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}users/logout",
+									"host": [
+										"{{local_url}}users"
+									],
+									"path": [
+										"logout"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBkZWY0MzMwNzMyMDEyNDQxMGE4NjQiLCJpYXQiOjE2OTU0MjExMDl9.tudMdv71ofm7O-F6dKgslPEB5XkLHyiK2vOg_q5KgNg",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logOut All",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBlZDljMjM3MmFiYWIyOTU4NGUyMmQiLCJpYXQiOjE2OTU0NzIzMTl9.bNhaOQYPAJ7isY-KJcuinbU48z83N8ZYdTIeV5o8Xp4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local_url}}users/logOutAll",
+									"host": [
+										"{{local_url}}users"
+									],
+									"path": [
+										"logOutAll"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "edit my profile",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBkZWY0MzMwNzMyMDEyNDQxMGE4NjQiLCJpYXQiOjE2OTU0MjExMDl9.tudMdv71ofm7O-F6dKgslPEB5XkLHyiK2vOg_q5KgNg",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE0NWU2NDE4OGFiYzBlODMzOTg5MWMiLCJpYXQiOjE2OTU4MzM3NzV9.VdC9NeAcxWlYLAzS884L-7iL7VsCUOhGxKcGu4UeEL0",
+								"description": "admin",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU4MTA3MDF9.RI7AVAxCFxWScf3_67aTDV8muBfox2C2IT4vBFGy7bA",
+								"description": "STUDENT",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "// {\r\n//     \"firstName\":\"khaled2\",\r\n//     \"lastName\":\"ellithy2\",\r\n//     \"email\":\"khaled22@test.com\",\r\n//     //  \"password\":\"3Brothers@@\",\r\n//     \"gender\":\"male\",\r\n//     \"birthOfDate\":\"2000-09-10\"\r\n// }\r\n\r\n{\r\n    \"firstName\":\"khaledSTU\",\r\n    \"lastName\":\"ellithySTU\",\r\n    \"email\":\"khaledSTU@test.com\",\r\n    //  \"password\":\"3Brothers@@\",\r\n    \"gender\":\"male\",\r\n    \"birthOfDate\":\"2000-09-10\",\r\n    \"userId\":\"6511c958552ed3ec37ec2de2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}users/editProfile",
+							"host": [
+								"{{local_url}}users"
+							],
+							"path": [
+								"editProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show my Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBlZDljMjM3MmFiYWIyOTU4NGUyMmQiLCJpYXQiOjE2OTU0ODg0MTR9.jGH9myTzU6QAvfzOSoK1rMJDNa6T_OQEiEexdd-xHCU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local_url}}users/showProfile",
+							"host": [
+								"{{local_url}}users"
+							],
+							"path": [
+								"showProfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local_url}}students/showAll",
+							"host": [
+								"{{local_url}}students"
+							],
+							"path": [
+								"showAll"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"grafics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}instructors/addCategory",
+							"host": [
+								"{{local_url}}instructors"
+							],
+							"path": [
+								"addCategory"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local_url",
+			"value": "http://localhost:3000/",
+			"type": "string"
+		}
+	]
+}

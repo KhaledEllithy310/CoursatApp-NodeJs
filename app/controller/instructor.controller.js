@@ -1,6 +1,5 @@
 const userModel = require("../../database/models/users.model");
 const courseModel = require("../../database/models/courses.model");
-const categoryModel = require("../../database/models/categories.model");
 const { resGenerator, fileHandler } = require("../helper");
 const fs = require("fs");
 const path = require("path");
@@ -25,36 +24,82 @@ class Instructor {
     }
   };
 
-  static addCategory = async (req, res) => {
-    try {
-      const categoryData = new categoryModel(req.body);
-      await categoryData.save();
-      resGenerator(res, 200, true, categoryData, "add Category successfully");
-    } catch (e) {
-      resGenerator(res, 500, false, e.message, "add Category failed");
-    }
-  };
-
+  //Add Course with instructor or Admin
   static addCourse = async (req, res) => {
     try {
+      let instructorId;
+      if (req.user.userType !== "instructor") {
+        if (!req.body.instructorId) {
+          throw new Error("No instructor ID provided");
+        }
+        instructorId = req.body.instructorId;
+      } else {
+        instructorId = req.user._id;
+      }
       const courseData = new courseModel({
         ...req.body,
-        instructorId: req.user._id,
+        instructorId,
       });
       await courseData.save();
-      resGenerator(res, 200, true, courseData, "add Category successfully");
+      resGenerator(res, 200, true, courseData, "add Course  successfully");
     } catch (e) {
-      resGenerator(res, 500, false, e.message, "add Category failed");
+      resGenerator(res, 500, false, e.message, "add Course  failed");
     }
   };
-  static deleteCourse = async (req, res) => {}
-  static addContent = async (req, res) => {
+
+  //Edit Course with instructor or Admin
+  static editCourse = async (req, res) => {
     try {
       const { courseId } = req.params;
-      const course = await courseModel
-        .findById(courseId)
-        .populate("categoryId");
+      let instructorId;
+      if (req.user.userType !== "instructor") {
+        if (!req.body.instructorId) {
+          throw new Error("No instructor ID provided");
+        }
+        instructorId = req.body.instructorId;
+      } else {
+        instructorId = req.user._id;
+      }
+      const courseData = await courseModel.findByIdAndUpdate(
+        courseId,
+        {
+          ...req.body,
+          instructorId,
+        },
+        { runValidators: true }
+      );
+      if (!courseData) throw new Error("there was no Course");
+      else
+        resGenerator(res, 200, true, courseData, "edit Course  successfully");
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "edit Course  failed");
+    }
+  };
 
+  //Delete Course with instructor or Admin
+  static deleteCourse = async (req, res) => {
+    try {
+      const { courseId } = req.params;
+      const course = await courseModel.findByIdAndDelete(courseId);
+      // const instructorCourses = await courseModel.find({
+      //   instructorId: req.user._id,
+      // });
+      resGenerator(res, 200, true, course, "delete course successfully");
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "delete course failed");
+    }
+  };
+
+  //add content with instructor or Admin
+  static addContent = async (req, res) => {
+    try {
+      console.log("req.files", req.files);
+
+      const { courseId } = req.params;
+      console.log(courseId);
+      const course = await courseModel.findById(courseId);
+
+      console.log("course", course);
       if (!course) {
         return resGenerator(res, 404, false, null, "Course not found");
       }
@@ -69,11 +114,27 @@ class Instructor {
         .split("/")
         .slice(1)
         .join("/");
+      console.log("req.body", req.body);
       // create new content
+      // const newContent = {
+      //   videoFile: pathVideoFile,
+      //   assignment: pathAssignment,
+      // };
+      // console.log("newContent", newContent);
+      console.log("pathAssignment", pathAssignment);
+      console.log("pathVideoFile", pathVideoFile);
       const newContent = {
-        videoFile: pathVideoFile,
-        assignment: pathAssignment,
+        video: {
+          name: req.body.videoName,
+          file: pathVideoFile,
+        },
+        assignment: {
+          name: req.body.assignmentName,
+          file: pathAssignment,
+        },
       };
+      console.log("newContent", newContent);
+
       // store new content in course
       course.content.push(newContent);
       await course.save();
@@ -84,6 +145,7 @@ class Instructor {
     }
   };
 
+  //edit content with instructor or Admin
   static editContent = async (req, res) => {
     try {
       const { contentId } = req.params;
@@ -108,9 +170,9 @@ class Instructor {
       const oldVideoPath = targetCourse.content[index].videoFile;
       const oldAssignmentPath = targetCourse.content[index].assignment;
 
-      // Normalize the paths for proper comparison
-      const normalizedOldVideoPath = path.normalize(oldVideoPath);
-      const normalizedOldAssignmentPath = path.normalize(oldAssignmentPath);
+      // // Normalize the paths for proper comparison
+      // const normalizedOldVideoPath = path.normalize(oldVideoPath);
+      // const normalizedOldAssignmentPath = path.normalize(oldAssignmentPath);
       // Change path of files if the request include files
       const pathVideoFile =
         req.files && req.files.video && req.files.video[0]
@@ -129,29 +191,39 @@ class Instructor {
               .slice(1)
               .join("/")
           : oldAssignmentPath;
+      console.log("pathVideoFile", pathVideoFile);
+      console.log("pathAssignment", pathAssignment);
+      // // Delete the old files if they have changed
+      // if (normalizedOldVideoPath !== pathVideoFile) {
+      //   fs.unlink(normalizedOldVideoPath, (err) => {
+      //     if (err) {
+      //       console.error("Failed to delete old video file:", err);
+      //     }
+      //   });
+      // }
 
-      // Delete the old files if they have changed
-      if (normalizedOldVideoPath !== pathVideoFile) {
-        fs.unlink(normalizedOldVideoPath, (err) => {
-          if (err) {
-            console.error("Failed to delete old video file:", err);
-          }
-        });
-      }
-
-      if (normalizedOldAssignmentPath !== pathAssignment) {
-        fs.unlink(normalizedOldAssignmentPath, (err) => {
-          if (err) {
-            console.error("Failed to delete old assignment file:", err);
-          }
-        });
-      }
+      // if (normalizedOldAssignmentPath !== pathAssignment) {
+      //   fs.unlink(normalizedOldAssignmentPath, (err) => {
+      //     if (err) {
+      //       console.error("Failed to delete old assignment file:", err);
+      //     }
+      //   });
+      // }
       // Create new content
+      // const newContent = {
+      //   videoFile: pathVideoFile,
+      //   assignment: pathAssignment,
+      // };
       const newContent = {
-        videoFile: pathVideoFile,
-        assignment: pathAssignment,
+        video: {
+          name: req.body.videoName,
+          file: pathVideoFile,
+        },
+        assignment: {
+          name: req.body.assignmentName,
+          file: pathAssignment,
+        },
       };
-
       targetCourse.content[index] = newContent;
 
       // Save the updated targetCourse
@@ -169,16 +241,38 @@ class Instructor {
     }
   };
 
-
+  //show all course by instructorId with instructor or Admin
   static showCoursesByInstructor = async (req, res) => {
     try {
+      let instructorId;
+      if (req.user.userType !== "instructor") {
+        if (!req.body.instructorId) {
+          throw new Error("No instructor ID provided");
+        }
+        instructorId = req.body.instructorId;
+      } else {
+        instructorId = req.user._id;
+      }
       const allCourses = await courseModel
-        .find({ instructorId: req.user._id })
+        .find({ instructorId })
         .populate("categoryId")
         .populate("instructorId");
       resGenerator(res, 200, true, allCourses, "show all Courses successfully");
     } catch (e) {
       resGenerator(res, 500, false, e.message, "show all Courses failed");
+    }
+  };
+
+  //show all Students { paid the course} by CourseId with instructor or Admin
+  static showAllStudentsByCourseId = async (req, res) => {
+    try {
+      const { courseId } = req.params;
+      const students = await userModel.find({
+        "myLearning.courseId": courseId,
+      });
+      resGenerator(res, 200, true, students, "show all Students successfully");
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "show all Students failed");
     }
   };
 }

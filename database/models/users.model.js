@@ -49,7 +49,7 @@ const userSchema = mongoose.Schema(
     birthOfDate: {
       type: String,
       trim: true,
-      required: true,
+      // required: true,
       max: "2020-01-01",
       min: "1950-01-01",
     },

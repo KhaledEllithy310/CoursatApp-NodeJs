@@ -44,8 +44,17 @@ class Student {
   // show Profile with auth
   static showProfile = async (req, res) => {
     try {
+      let userId;
+      if (req.user.userType == "admin") {
+        if (!req.body.userId) {
+          throw new Error("No user ID provided");
+        }
+        userId = req.body.userId;
+      } else {
+        userId = req.user._id;
+      }
       // get id user from token
-      const userData = await userModel.findOne({ _id: req.user.id });
+      const userData = await userModel.findOne({ _id: userId });
       resGenerator(res, 200, true, userData, "show user successfully");
     } catch (e) {
       resGenerator(res, 500, false, e.message, "show user failed");
@@ -55,9 +64,18 @@ class Student {
   // Edit Profile with auth
   static editProfile = async (req, res) => {
     try {
+      let userId;
+      if (req.user.userType == "admin") {
+        if (!req.body.userId) {
+          throw new Error("No user ID provided");
+        }
+        userId = req.body.userId;
+      } else {
+        userId = req.user._id;
+      }
       // get id user from token
       const userData = await userModel.findOneAndUpdate(
-        { _id: req.user.id },
+        { _id: userId },
         req.body
       );
       resGenerator(res, 200, true, userData, "edited user successfully");
@@ -66,12 +84,22 @@ class Student {
     }
   };
 
-  // upload image profile
+  // upload image profile with user and admin
   static uploadImage = async (req, res) => {
     try {
+      let userId;
+      if (req.user.userType == "admin") {
+        if (!req.body.userId) {
+          throw new Error("No user ID provided");
+        }
+        userId = req.body.userId;
+      } else {
+        userId = req.user._id;
+      }
+      const user = await userModel.findById(userId);
       const ext = fileHandler(req);
-      req.user.image = `${process.env.URL_SERVER}/${req.file.filename}.${ext}`;
-      await req.user.save();
+      user.image = `${process.env.URL_SERVER}/${req.file.filename}.${ext}`;
+      await user.save();
       resGenerator(res, 200, true, req.user, "images uploaded successfully");
     } catch (e) {
       resGenerator(res, 500, false, e.message, "uploaded failed ");

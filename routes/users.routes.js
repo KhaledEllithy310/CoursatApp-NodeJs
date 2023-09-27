@@ -6,15 +6,19 @@ const upload = require("../app/middleware/upload.middleware");
 
 // login user
 router.post("/login", usersController.logIn);
+
 // log out with authentication for users
 router.post("/logout", authUser, usersController.logOut);
+
 // log out from all devises with authentication for users
 router.post("/logOutAll", authUser, usersController.logOutAll);
 
 // show profile user with authentication for users
 router.get("/showProfile", authUser, usersController.showProfile);
+
 // edit profile user with authentication for users
-router.patch("/edit", authUser, usersController.editProfile);
+router.patch("/editProfile", authUser, usersController.editProfile);
+
 // change image profile user with authentication for users
 router.post(
   "/uploadImage",

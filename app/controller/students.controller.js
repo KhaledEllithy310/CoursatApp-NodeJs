@@ -173,6 +173,7 @@ class Student {
     }
   };
 
+  // show all Courses in cart
   static showAllCoursesInCart = async (req, res) => {
     try {
       const cartCourses = await userModel
@@ -185,6 +186,7 @@ class Student {
     }
   };
 
+  // show all Courses in WishList
   static showAllCoursesInWishList = async (req, res) => {
     try {
       const wishListCourses = await userModel
@@ -203,6 +205,7 @@ class Student {
     }
   };
 
+  // show all Courses in MyLearning
   static showAllCoursesInMyLearning = async (req, res) => {
     try {
       const myLearningCourses = await userModel

@@ -1,36 +1,11 @@
-const studentModel = require("../../database/models/students.model");
+const userModel = require("../../database/models/users.model");
 const { resGenerator } = require("../helper");
 
-class Student {
-  // create student
-  static addStudent = async (req, res) => {
-    try {
-      const studentData = new studentModel(req.body);
-      await studentData.save();
-      resGenerator(res, 200, true, studentData, "added student successfully");
-    } catch (e) {
-      resGenerator(res, 500, false, e.message, "added student failed");
-    }
-  };
-
-  // Edit student
-  static editStudent = async (req, res) => {
-    try {
-      const { id } = req.params;
-      const studentData = await studentModel.findOneAndUpdate(
-        { _id: id },
-        req.body
-      );
-      resGenerator(res, 200, true, studentData, "edited student successfully");
-    } catch (e) {
-      resGenerator(res, 500, false, e.message, "edited student failed");
-    }
-  };
-
+class Admin {
   // Show All Students
   static showAllStudents = async (req, res) => {
     try {
-      const allStudents = await studentModel.find();
+      const allStudents = await userModel.find({ userType: "student" });
       resGenerator(
         res,
         200,
@@ -43,27 +18,64 @@ class Student {
     }
   };
 
-  //Login Student
-  static loginStudent = async (req, res) => {
+  // Show All Instructors
+  static showAllInstructors = async (req, res) => {
     try {
-      const studentData = await studentModel.logMe(
-        req.body.email,
-        req.body.password
-      );
-      console.log(studentData);
-      const token = await studentData.generateToken();
+      const allInstructors = await userModel.find({ userType: "instructor" });
       resGenerator(
         res,
         200,
         true,
-        { studentData, token },
-        "login student successfully"
+        allInstructors,
+        "show all Instructors successfully"
       );
     } catch (e) {
-      resGenerator(res, 500, false, e.message, "login student failed");
+      resGenerator(res, 500, false, e.message, "show all Instructors failed");
     }
   };
 
-  
+  // Show All Admins
+  static showAllAdmins = async (req, res) => {
+    try {
+      const allAdmins = await userModel.find({ userType: "admin" });
+      resGenerator(res, 200, true, allAdmins, "show all Admins successfully");
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "show all Admins failed");
+    }
+  };
+
+  //Add Category with Admin
+  static addCategory = async (req, res) => {
+    try {
+      const categoryData = new categoryModel(req.body);
+      await categoryData.save();
+      resGenerator(res, 200, true, categoryData, "add Category successfully");
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "add Category failed");
+    }
+  };
+
+  //Edit Category with Admin
+  static editCategory = async (req, res) => {
+    try {
+      const { categoryId } = req.params;
+      const categoryData = await categoryModel.findByIdAndUpdate(
+        categoryId,
+        { ...req.body },
+        { runValidators: true }
+      );
+      if (!categoryData) throw new Error("there is no category");
+      else
+        resGenerator(
+          res,
+          200,
+          true,
+          categoryData,
+          "edit Category successfully"
+        );
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "edit Category failed");
+    }
+  };
 }
-module.exports = Student;
+module.exports = Admin;
