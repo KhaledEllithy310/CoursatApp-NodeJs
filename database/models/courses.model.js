@@ -20,12 +20,12 @@ const courseSchema = mongoose.Schema(
     content: [
       {
         video: {
-          name: { type: String,  trim: true },
-          file: { type: String,  trim: true },
+          name: { type: String, trim: true },
+          file: { type: String, trim: true },
         },
         assignment: {
           name: { type: String, trim: true },
-          file: { type: String,  trim: true },
+          file: { type: String, trim: true },
         },
       },
     ],

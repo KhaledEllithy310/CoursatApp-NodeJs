@@ -3,12 +3,18 @@ const router = require("express").Router();
 const { authAdmin, authUser } = require("../app/middleware/auth.middleware");
 // const upload = require("../app/middleware/upload.middleware");
 const uploadFiles = require("../app/middleware/uploadFiles.middleware");
+const upload = require("../app/middleware/upload.middleware");
 
 // register As Instructor
 router.post("/add", instructorsController.registerInstructor);
 
 //Add Course with instructor or Admin
-router.post("/addCourse", authUser, instructorsController.addCourse);
+router.post(
+  "/addCourse",
+  authUser,
+  upload.single("image"),
+  instructorsController.addCourse
+);
 
 //Edit Course with instructor or Admin
 router.patch(
@@ -22,6 +28,12 @@ router.delete(
   "/deleteCourse/:courseId",
   authUser,
   instructorsController.deleteCourse
+);
+//Delete Course from courses with instructor or Admin
+router.get(
+  "/showCourseById/:courseId",
+  authUser,
+  instructorsController.showCourseById
 );
 
 //add content with instructor or Admin

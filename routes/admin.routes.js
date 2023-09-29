@@ -21,4 +21,17 @@ router.post("/addCategory", authAdmin, adminController.addCategory);
 //Edit Category with Admin
 router.post("/editCategory/:id", authAdmin, adminController.editCategory);
 
+//Show All Category with Admin
+router.get(
+  "/showAllCategories",
+  authUser,
+  authAdmin,
+  adminController.showAllCategories
+);
+//Show All Courses with Admin
+router.get(
+  "/showAllCourses",
+  adminController.showAllCourses
+);
+
 module.exports = router;

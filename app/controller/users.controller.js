@@ -76,7 +76,8 @@ class Student {
       // get id user from token
       const userData = await userModel.findOneAndUpdate(
         { _id: userId },
-        req.body
+        req.body,
+        { runValidators: true }
       );
       resGenerator(res, 200, true, userData, "edited user successfully");
     } catch (e) {
@@ -87,6 +88,7 @@ class Student {
   // upload image profile with user and admin
   static uploadImage = async (req, res) => {
     try {
+      console.log(req.file);
       let userId;
       if (req.user.userType == "admin") {
         if (!req.body.userId) {
@@ -97,10 +99,22 @@ class Student {
         userId = req.user._id;
       }
       const user = await userModel.findById(userId);
-      const ext = fileHandler(req);
-      user.image = `${process.env.URL_SERVER}/${req.file.filename}.${ext}`;
+      // const ext = fileHandler(req);
+      // user.image = `${req.file.filename}`;
+      console.log(
+        "in function uploadImage `${req.file.filename}` ",
+        `${req.file.filename}`
+      );
+      console.log("in function uploadImage ", user.image);
+      // console.log(req.file.filename);
+      if (req.file) {
+        const newName = fileHandler(req);
+        console.log("newName", newName);
+        user.image = process.env.URL_SERVER + newName.replace("public", "");
+      }
       await user.save();
-      resGenerator(res, 200, true, req.user, "images uploaded successfully");
+      console.log("in function uploadImage ", user);
+      resGenerator(res, 200, true, user, "images uploaded successfully");
     } catch (e) {
       resGenerator(res, 500, false, e.message, "uploaded failed ");
     }

@@ -12,7 +12,7 @@ const fileHandler = (req) => {
   const ext = req.file.originalname.split(".").pop();
   const newName = req.file.path + "." + ext;
   fs.renameSync(req.file.path, newName);
-  return ext;
+  return newName;
 };
 
 // const videosHandler = (req) => {
@@ -21,7 +21,5 @@ const fileHandler = (req) => {
 //   fs.renameSync(req.file.path, newName);
 //   return ext;
 // };
-
-
 
 module.exports = { resGenerator, fileHandler };

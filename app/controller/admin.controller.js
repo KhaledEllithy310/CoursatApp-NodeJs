@@ -1,5 +1,7 @@
 const userModel = require("../../database/models/users.model");
+const categoryModel = require("../../database/models/categories.model");
 const { resGenerator } = require("../helper");
+const courseModel = require("../../database/models/courses.model");
 
 class Admin {
   // Show All Students
@@ -75,6 +77,38 @@ class Admin {
         );
     } catch (e) {
       resGenerator(res, 500, false, e.message, "edit Category failed");
+    }
+  };
+
+  // Show All Admins
+  static showAllCategories = async (req, res) => {
+    try {
+      const allCategories = await categoryModel.find();
+      resGenerator(
+        res,
+        200,
+        true,
+        allCategories,
+        "show all Categories successfully"
+      );
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "show all Categories failed");
+    }
+  };
+
+  // Show All Admins
+  static showAllCourses = async (req, res) => {
+    try {
+      const allCourses = await courseModel.find();
+      resGenerator(
+        res,
+        200,
+        true,
+        allCourses,
+        "show all Courses  successfully"
+      );
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "show all Courses  failed");
     }
   };
 }

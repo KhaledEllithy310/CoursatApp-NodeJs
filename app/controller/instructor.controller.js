@@ -1,6 +1,8 @@
 const userModel = require("../../database/models/users.model");
 const courseModel = require("../../database/models/courses.model");
 const { resGenerator, fileHandler } = require("../helper");
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 const fs = require("fs");
 const path = require("path");
 class Instructor {
@@ -36,10 +38,21 @@ class Instructor {
       } else {
         instructorId = req.user._id;
       }
+
       const courseData = new courseModel({
         ...req.body,
         instructorId,
       });
+
+      if (req.file) {
+        const newName = fileHandler(req);
+        console.log("newName", newName);
+        courseData.image =
+          process.env.URL_SERVER + newName.replace("public", "");
+      }
+      // if (req.file) {
+      //   courseData.image = req.file.filename;
+      // }
       await courseData.save();
       resGenerator(res, 200, true, courseData, "add Course  successfully");
     } catch (e) {
@@ -76,6 +89,25 @@ class Instructor {
     }
   };
 
+  static showCourseById = async (req, res) => {
+    try {
+      const { courseId } = req.params;
+      let instructorId;
+      if (req.user.userType !== "instructor") {
+        if (!req.body.instructorId) {
+          throw new Error("No instructor ID provided");
+        }
+        instructorId = req.body.instructorId;
+      } else {
+        instructorId = req.user._id;
+      }
+      console.log(instructorId);
+      const courseData = await courseModel.findById(courseId);
+      resGenerator(res, 200, true, courseData, "show Course  successfully");
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "show Course  failed");
+    }
+  };
   //Delete Course with instructor or Admin
   static deleteCourse = async (req, res) => {
     try {
@@ -97,7 +129,12 @@ class Instructor {
 
       const { courseId } = req.params;
       console.log(courseId);
-      const course = await courseModel.findById(courseId);
+      console.log(
+        "new ObjectId(courseId.trim())",
+        new ObjectId(courseId.trim())
+      );
+      // const course = await courseModel.findById(courseId);
+      const course = await courseModel.findById(new ObjectId(courseId.trim()));
 
       console.log("course", course);
       if (!course) {
