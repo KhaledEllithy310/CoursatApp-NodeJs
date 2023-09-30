@@ -47,19 +47,21 @@ class Student {
               "this Course already exists in your collection wish list"
             );
           }
-          console.log("IndexCourseInMyLearning33", IndexCourseInMyLearning);
-          student.cart.push({ courseId });
+
           student.wishList.splice(IndexCourseInWishList, 1);
-          console.log("ana fe push");
-          await student.save();
-          resGenerator(
-            res,
-            200,
-            true,
-            student,
-            "add course to cart successfully"
-          );
         }
+        console.log("IndexCourseInMyLearning33", IndexCourseInMyLearning);
+        student.cart.push({ courseId });
+        await student.save();
+        console.log("ana fe push");
+
+        resGenerator(
+          res,
+          200,
+          true,
+          student,
+          "add course to cart successfully"
+        );
       }
     } catch (e) {
       resGenerator(res, 500, false, e.message, "add course to cart failed");
