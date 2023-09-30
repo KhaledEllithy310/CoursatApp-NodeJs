@@ -29,7 +29,15 @@ router.delete(
   authUser,
   instructorsController.deleteCourse
 );
-//Delete Course from courses with instructor or Admin
+
+//showCourseById with Student Enrolled
+router.get(
+  "/showCourseByIdForStudents/:courseId",
+  authUser,
+  instructorsController.showCourseByIdForStudents
+);
+
+//showCourseById with instructor or Admin
 router.get(
   "/showCourseById/:courseId",
   authUser,

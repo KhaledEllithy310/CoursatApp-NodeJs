@@ -97,18 +97,60 @@ class Admin {
   };
 
   // Show All Admins
-  static showAllCourses = async (req, res) => {
+  // static showAllCourses = async (req, res) => {
+  //   try {
+  //     const allCourses = await courseModel.find();
+  //     resGenerator(
+  //       res,
+  //       200,
+  //       true,
+  //       allCourses,
+  //       "show all Courses  successfully"
+  //     );
+  //   } catch (e) {
+  //     resGenerator(res, 500, false, e.message, "show all Courses  failed");
+  //   }
+  // };
+
+  static showAllCoursesPublish = async (req, res) => {
     try {
-      const allCourses = await courseModel.find();
+      const allCourses = await courseModel.find({ isPublished: true });
       resGenerator(
         res,
         200,
         true,
         allCourses,
-        "show all Courses  successfully"
+        "show all Courses Published  successfully"
       );
     } catch (e) {
-      resGenerator(res, 500, false, e.message, "show all Courses  failed");
+      resGenerator(
+        res,
+        500,
+        false,
+        e.message,
+        "show all Courses Published failed"
+      );
+    }
+  };
+
+  static showAllCoursesPending = async (req, res) => {
+    try {
+      const allCourses = await courseModel.find({ isPublished: false });
+      resGenerator(
+        res,
+        200,
+        true,
+        allCourses,
+        "show all Courses Pending successfully"
+      );
+    } catch (e) {
+      resGenerator(
+        res,
+        500,
+        false,
+        e.message,
+        "show all Courses Pending failed"
+      );
     }
   };
 }

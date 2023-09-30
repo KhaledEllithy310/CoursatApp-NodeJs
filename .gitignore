@@ -1,0 +1,11 @@
+node_modules/
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.gif

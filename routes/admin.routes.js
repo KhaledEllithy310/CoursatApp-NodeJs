@@ -28,10 +28,10 @@ router.get(
   authAdmin,
   adminController.showAllCategories
 );
-//Show All Courses with Admin
-router.get(
-  "/showAllCourses",
-  adminController.showAllCourses
-);
+//Show All Courses Pending with Admin
+router.get("/showAllCoursesPending", adminController.showAllCoursesPending);
+
+//Show All Courses publish with Admin
+router.get("/showAllCoursesPublish", adminController.showAllCoursesPublish);
 
 module.exports = router;

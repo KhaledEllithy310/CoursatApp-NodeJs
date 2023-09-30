@@ -108,6 +108,41 @@ class Instructor {
       resGenerator(res, 500, false, e.message, "show Course  failed");
     }
   };
+
+  static showCourseByIdForStudents = async (req, res) => {
+    try {
+      const { courseId } = req.params;
+      const studentId = req.user._id;
+
+      const students = await userModel.find({
+        "myLearning.courseId": courseId,
+      });
+
+      const isStudentEnrolled = students.some(
+        (student) => student._id.toString() == studentId.toString()
+      );
+
+      if (isStudentEnrolled) {
+        // Retrieve the course data for the given courseId
+        const courseData = await courseModel
+          .findById(courseId)
+          .populate("instructorId")
+          .populate("categoryId");
+
+        resGenerator(res, 200, true, courseData, "Show course successfully");
+      } else
+        resGenerator(
+          res,
+          403,
+          false,
+          null,
+          "You are not enrolled in this course"
+        );
+    } catch (e) {
+      resGenerator(res, 500, false, e.message, "Show course failed");
+    }
+  };
+
   //Delete Course with instructor or Admin
   static deleteCourse = async (req, res) => {
     try {
@@ -230,27 +265,6 @@ class Instructor {
           : oldAssignmentPath;
       console.log("pathVideoFile", pathVideoFile);
       console.log("pathAssignment", pathAssignment);
-      // // Delete the old files if they have changed
-      // if (normalizedOldVideoPath !== pathVideoFile) {
-      //   fs.unlink(normalizedOldVideoPath, (err) => {
-      //     if (err) {
-      //       console.error("Failed to delete old video file:", err);
-      //     }
-      //   });
-      // }
-
-      // if (normalizedOldAssignmentPath !== pathAssignment) {
-      //   fs.unlink(normalizedOldAssignmentPath, (err) => {
-      //     if (err) {
-      //       console.error("Failed to delete old assignment file:", err);
-      //     }
-      //   });
-      // }
-      // Create new content
-      // const newContent = {
-      //   videoFile: pathVideoFile,
-      //   assignment: pathAssignment,
-      // };
       const newContent = {
         video: {
           name: req.body.videoName,

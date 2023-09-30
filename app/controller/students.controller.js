@@ -23,6 +23,7 @@ class Student {
   static addToCart = async (req, res) => {
     try {
       const { courseId } = req.params;
+      // console.log(courseId);
       const student = await userModel.findOne(req.user._id);
       const index = student.cart.findIndex(
         (course) => course.courseId == courseId
@@ -31,15 +32,35 @@ class Student {
       const IndexCourseInWishList = student.wishList.findIndex(
         (course) => course.courseId == courseId
       );
+      // console.log(student.myLearning);
+      const IndexCourseInMyLearning = student.myLearning.findIndex(
+        (course) => course.courseId == courseId
+      );
+      console.log("IndexCourseInMyLearning", IndexCourseInMyLearning);
       if (index != -1) throw new Error("Course already exists");
       else {
         if (IndexCourseInWishList != -1) {
+          console.log("IndexCourseInMyLearning11", IndexCourseInMyLearning);
+          if (IndexCourseInMyLearning != -1) {
+            console.log("IndexCourseInMyLearning22", IndexCourseInMyLearning);
+            throw new Error(
+              "this Course already exists in your collection wish list"
+            );
+          }
+          console.log("IndexCourseInMyLearning33", IndexCourseInMyLearning);
+          student.cart.push({ courseId });
           student.wishList.splice(IndexCourseInWishList, 1);
+          console.log("ana fe push");
+          await student.save();
+          resGenerator(
+            res,
+            200,
+            true,
+            student,
+            "add course to cart successfully"
+          );
         }
-        student.cart.push({ courseId });
       }
-      await student.save();
-      resGenerator(res, 200, true, student, "add course to cart successfully");
     } catch (e) {
       resGenerator(res, 500, false, e.message, "add course to cart failed");
     }
@@ -128,32 +149,89 @@ class Student {
     }
   };
 
+  // // add Course to MyLearning
+  // static addToMyLearning = async (req, res) => {
+  //   try {
+  //     const { courseId } = req.params;
+  //     const student = await userModel.findOne(req.user._id);
+  //     const index = student.myLearning.findIndex(
+  //       (course) => course.courseId == courseId
+  //     );
+  //     const IndexCourseInCart = student.cart.findIndex(
+  //       (course) => course.courseId == courseId
+  //     );
+  //     console.log("IndexCourseInCart", IndexCourseInCart);
+  //     if (index != -1) throw new Error("Course already exists");
+  //     else {
+  //       if (
+  //         req.body.promoCode !== process.env.PROMO_CODE ||
+  //         IndexCourseInCart === -1
+  //       ) {
+  //         throw new Error("Invalid promo code or course not in cart");
+  //       } else {
+  //         student.myLearning.push({ courseId });
+  //         // Remove the course from the cart
+  //         student.cart.splice(IndexCourseInCart, 1);
+  //       }
+  //       await student.save();
+  //     }
+
+  //     resGenerator(
+  //       res,
+  //       200,
+  //       true,
+  //       student,
+  //       "add course to myLearning successfully"
+  //     );
+  //   } catch (e) {
+  //     resGenerator(
+  //       res,
+  //       500,
+  //       false,
+  //       e.message,
+  //       "add course to myLearning failed"
+  //     );
+  //   }
+  // };
+
+  // show all Courses in cart
+
   // add Course to MyLearning
   static addToMyLearning = async (req, res) => {
     try {
-      const { courseId } = req.params;
+      // // const coursesInCart = await
       const student = await userModel.findOne(req.user._id);
-      const index = student.myLearning.findIndex(
-        (course) => course.courseId == courseId
-      );
-      const IndexCourseInCart = student.cart.findIndex(
-        (course) => course.courseId == courseId
-      );
-      console.log("IndexCourseInCart", IndexCourseInCart);
-      if (index != -1) throw new Error("Course already exists");
-      else {
-        if (
-          req.body.promoCode !== process.env.PROMO_CODE ||
-          IndexCourseInCart === -1
-        ) {
-          throw new Error("Invalid promo code or course not in cart");
-        } else {
-          student.myLearning.push({ courseId });
-          // Remove the course from the cart
-          student.cart.splice(IndexCourseInCart, 1);
+      // console.log(student);
+      // // let coursesIds = [];
+      // const coursesInCart = await Promise.all(student.cart.map(async (course) => {
+      //   const courseId = course._id.toString();
+      //   return courseId;
+      // }));
+      const coursesInCart = req.body.coursesIds;
+
+      console.log("coursesInCart", coursesInCart);
+      coursesInCart.forEach(async (courseId) => {
+        const index = student.myLearning.findIndex(
+          (course) => course.courseId == courseId
+        );
+        const IndexCourseInCart = student.cart.findIndex(
+          (course) => course.courseId == courseId
+        );
+        console.log("IndexCourseInCart", IndexCourseInCart, index);
+        if (index != -1)
+          throw new Error("Course already exists in your learning");
+        else {
+          console.log(req.body.promoCode);
+          if (req.body.promoCode != process.env.PROMO_CODE) {
+            throw new Error("Invalid promo code");
+          } else {
+            student.myLearning.push({ courseId });
+            // Remove the course from the cart
+            student.cart.splice(IndexCourseInCart, 1);
+          }
         }
-        await student.save();
-      }
+      });
+      await student.save();
 
       resGenerator(
         res,
@@ -173,7 +251,6 @@ class Student {
     }
   };
 
-  // show all Courses in cart
   static showAllCoursesInCart = async (req, res) => {
     try {
       const cartCourses = await userModel

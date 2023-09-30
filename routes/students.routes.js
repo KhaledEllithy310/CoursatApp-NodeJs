@@ -30,8 +30,13 @@ router.delete(
 );
 
 // add course to MyLearning
+// router.post(
+//   "/addToMyLearning/:courseId",
+//   authUser,
+//   studentsController.addToMyLearning
+// );
 router.post(
-  "/addToMyLearning/:courseId",
+  "/addToMyLearning",
   authUser,
   studentsController.addToMyLearning
 );

@@ -1,3 +1,4 @@
+const courseModel = require("../../database/models/courses.model");
 const userModel = require("../../database/models/users.model");
 const { resGenerator, fileHandler } = require("../helper");
 
@@ -119,5 +120,7 @@ class Student {
       resGenerator(res, 500, false, e.message, "uploaded failed ");
     }
   };
+
+
 }
 module.exports = Student;
