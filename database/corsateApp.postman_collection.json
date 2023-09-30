@@ -80,12 +80,12 @@
 									}
 								],
 								"url": {
-									"raw": "{{local_url}}students/deleteFromWishList/6511bfa3126fa211eeef5eb5",
+									"raw": "{{local_url}}students/deleteFromCart/6511bfa3126fa211eeef5eb5",
 									"host": [
 										"{{local_url}}students"
 									],
 									"path": [
-										"deleteFromWishList",
+										"deleteFromCart",
 										"6511bfa3126fa211eeef5eb5"
 									]
 								}
@@ -99,7 +99,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTU2NjQ1MzF9.OvYD7aUZGVCAAMBQxSLwrXV06xQ4bT-tRXYnKXBULpE",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTExYzk1ODU1MmVkM2VjMzdlYzJkZTIiLCJpYXQiOjE2OTYwNjY5MjJ9.IuGi_Qx3zO4U90m2EQJ9GyOkj2tQIFK6Pc3ctuov61g",
 										"type": "text"
 									}
 								],
@@ -514,6 +514,135 @@
 							"response": []
 						},
 						{
+							"name": "show detail course by id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE1MDJlZThkYjBkZDZkYmIwZGZjODUiLCJpYXQiOjE2OTYwMTIxODF9.t-u_PGInvdlcwrLRs_vpZlI35ONeZ6AARLqPSYXh--k",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE0NWU2NDE4OGFiYzBlODMzOTg5MWMiLCJpYXQiOjE2OTU4MzM3NzV9.VdC9NeAcxWlYLAzS884L-7iL7VsCUOhGxKcGu4UeEL0",
+										"description": "admin",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"instructorId\":\"6511bc4521dcea6da6c1f06f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}instructors/showCourseById/6515e7a61561ece67bb54614",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"showCourseById",
+										"6515e7a61561ece67bb54614"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show Course By Id For Students",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE1MDJlZThkYjBkZDZkYmIwZGZjODUiLCJpYXQiOjE2OTYwMTIxODF9.t-u_PGInvdlcwrLRs_vpZlI35ONeZ6AARLqPSYXh--k",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE0NWU2NDE4OGFiYzBlODMzOTg5MWMiLCJpYXQiOjE2OTU4MzM3NzV9.VdC9NeAcxWlYLAzS884L-7iL7VsCUOhGxKcGu4UeEL0",
+										"description": "admin",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"instructorId\":\"6511bc4521dcea6da6c1f06f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}instructors/showCourseByIdForStudents/6515e7a61561ece67bb54614",
+									"host": [
+										"{{local_url}}instructors"
+									],
+									"path": [
+										"showCourseByIdForStudents",
+										"6515e7a61561ece67bb54614"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all courses",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBmMzhmMTc0M2U2YWU2N2Q4NGZkNjUiLCJpYXQiOjE2OTU1MDE3MjF9.H-MSbhyTba_5Ect_sB5nTKlsJEFrdlQhQ17zXGGDRd8",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE0NWU2NDE4OGFiYzBlODMzOTg5MWMiLCJpYXQiOjE2OTU4MzM3NzV9.VdC9NeAcxWlYLAzS884L-7iL7VsCUOhGxKcGu4UeEL0",
+										"description": "admin",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"instructorId\":\"6511bc4521dcea6da6c1f06f\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local_url}}admin/showAllCourses",
+									"host": [
+										"{{local_url}}admin"
+									],
+									"path": [
+										"showAllCourses"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "show student by course id",
 							"request": {
 								"method": "GET",
@@ -633,7 +762,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBlZDljMjM3MmFiYWIyOTU4NGUyMmQiLCJpYXQiOjE2OTU0NzIzMTl9.bNhaOQYPAJ7isY-KJcuinbU48z83N8ZYdTIeV5o8Xp4",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE1MDJlZThkYjBkZDZkYmIwZGZjODUiLCJpYXQiOjE2OTU5OTE4OTl9.4U9i60_X2rf-8xYEwiy6cjJUOKiySWSnSGfZ8SpypqI",
 										"type": "text"
 									}
 								],
@@ -658,15 +787,16 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTBkZWY0MzMwNzMyMDEyNDQxMGE4NjQiLCJpYXQiOjE2OTU0MjExMDl9.tudMdv71ofm7O-F6dKgslPEB5XkLHyiK2vOg_q5KgNg",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE1MDJlZThkYjBkZDZkYmIwZGZjODUiLCJpYXQiOjE2OTU5OTE4OTl9.4U9i60_X2rf-8xYEwiy6cjJUOKiySWSnSGfZ8SpypqI",
 								"type": "text",
-								"disabled": true
+								"description": "instructor"
 							},
 							{
 								"key": "Authorization",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE0NWU2NDE4OGFiYzBlODMzOTg5MWMiLCJpYXQiOjE2OTU4MzM3NzV9.VdC9NeAcxWlYLAzS884L-7iL7VsCUOhGxKcGu4UeEL0",
 								"description": "admin",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							},
 							{
 								"key": "Authorization",
@@ -678,7 +808,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "// {\r\n//     \"firstName\":\"khaled2\",\r\n//     \"lastName\":\"ellithy2\",\r\n//     \"email\":\"khaled22@test.com\",\r\n//     //  \"password\":\"3Brothers@@\",\r\n//     \"gender\":\"male\",\r\n//     \"birthOfDate\":\"2000-09-10\"\r\n// }\r\n\r\n{\r\n    \"firstName\":\"khaledSTU\",\r\n    \"lastName\":\"ellithySTU\",\r\n    \"email\":\"khaledSTU@test.com\",\r\n    //  \"password\":\"3Brothers@@\",\r\n    \"gender\":\"male\",\r\n    \"birthOfDate\":\"2000-09-10\",\r\n    \"userId\":\"6511c958552ed3ec37ec2de2\"\r\n}",
+							"raw": "{\r\n    \"firstName\":\"khaled2\",\r\n    \"lastName\":\"ellithy2\",\r\n    \"email\":\"khaledellessy310@gmail.com\"\r\n    //  \"password\":\"3Brothers@@\",\r\n    // \"gender\":\"male\",\r\n    // \"birthOfDate\":\"2000-09-10\"\r\n}\r\n\r\n// {\r\n//     \"firstName\":\"khaledSTU\",\r\n//     \"lastName\":\"ellithySTU\",\r\n//     \"email\":\"khaledSTU@test.com\",\r\n//     //  \"password\":\"3Brothers@@\",\r\n//     \"gender\":\"male\",\r\n//     \"birthOfDate\":\"2000-09-10\",\r\n//     \"userId\":\"6511c958552ed3ec37ec2de2\"\r\n// }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -736,6 +866,39 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "upload Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE1MDJlZThkYjBkZDZkYmIwZGZjODUiLCJpYXQiOjE2OTU5NzYwMzZ9.nR51u-c0ycUHQU59SCL6zN6YD6EtdnYdi5YXGAhPHjU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/user/Desktop/Files/portfolio.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{local_url}}users/uploadImage",
+							"host": [
+								"{{local_url}}users"
+							],
+							"path": [
+								"uploadImage"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -763,6 +926,41 @@
 							],
 							"path": [
 								"addCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "showAllCategories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTE1MDJlZThkYjBkZDZkYmIwZGZjODUiLCJpYXQiOjE2OTU5Mjc4NTl9.MMWOyj00ahZ60v8Bo2EqvEMwMrPyfDQ58qSdyX1Kyv4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"grafics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local_url}}admin/showAllCategories",
+							"host": [
+								"{{local_url}}admin"
+							],
+							"path": [
+								"showAllCategories"
 							]
 						}
 					},
